@@ -1,0 +1,156 @@
+.getStarted-S {
+	/* background: rgb(77,123,222);
+	background: linear-gradient(90deg, rgba(77,123,222,1) 0%, rgba(132,87,255,1) 100%); */
+	color: white;
+	border-radius: 15px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+
+	/* new */
+	font-family: 'Quantico';
+	background: #FF731D;
+	width: 143px;
+	height: 57px;
+	font-size: 18px;
+	margin-top: 15px;
+}
+
+.getStarted-L {
+	/* background: rgb(77,123,222);
+	background: linear-gradient(90deg, rgba(77,123,222,1) 0%, rgba(132,87,255,1) 100%); */
+	color: white;
+	border-radius: 15px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+
+	/* new */
+	font-family: 'Quantico';
+	background: #FF731D;
+	width: 143px;
+	height: 57px;
+	font-size: 18px;
+	margin-top: 30px;
+
+}
+
+.signUpS {
+	/* background: rgb(77,123,222);
+	background: linear-gradient(90deg, rgba(77,123,222,1) 0%, rgba(132,87,255,1) 100%); */
+	color: white;
+	border-radius: 15px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+
+	/* new */
+	font-family: 'Quantico';
+	background: #FF731D;
+	width: 82px;
+	height: 40px;
+	float: right;
+	margin-top: 22px;
+	margin-right: 30px;
+}
+.signInS {
+	/* background: rgb(77,123,222);
+	background: linear-gradient(90deg, rgba(77,123,222,1) 0%, rgba(132,87,255,1) 100%); */
+	color: white;
+	border-radius: 15px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+
+	/* new */
+	font-family: 'Quantico';
+	background: #FF731D;
+	width: 82px;
+	height: 40px;
+	float: right;
+	margin-top: 22px;
+	margin-right: 10px;
+}
+
+.signUpL {
+	/* background: rgb(77,123,222);
+	background: linear-gradient(90deg, rgba(77,123,222,1) 0%, rgba(132,87,255,1) 100%); */
+	color: white;
+	border-radius: 15px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+
+	/* new */
+	font-family: 'Quantico';
+	background: #FF731D;
+	width: 82px;
+	height: 40px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 116px;
+
+}
+.signInL {
+	/* background: rgb(77,123,222);
+	background: linear-gradient(90deg, rgba(77,123,222,1) 0%, rgba(132,87,255,1) 100%); */
+	color: white;
+	border-radius: 15px;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+
+	/* new */
+	font-family: 'Quantico';
+	background: #FF731D;
+	width: 82px;
+	height: 40px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 26px;
+
+}
+
+.gridItem1 {
+	background-color: white;
+}
+.gridItem2 {
+	background-color: #FFEDCD;
+}
+
+.h1-S h1 {
+	font-size: 25px;
+	margin-top: 38px;
+}
+
+.h3-S h3 {
+	font-size: 12px;
+	color: #666666;
+	font-weight: 400;
+
+}
+.h1-L h1 {
+	font-size: 40px;
+	margin-top: 30px;
+	margin-bottom: 17px;
+
+}
+.h3-L h3 {
+	font-size: 18px;
+	color: #666666;
+	font-weight: 400;
+}
+
+.lineS {
+	width: 220px;
+	border-top: 3px solid #666666;
+	margin: 38px 0;
+	box-shadow: 0px 3px 3px rgba(102, 102, 102, 0.25);
+}
+.lineL {
+	width: 440px;
+	border-top: 3px solid #666666;
+	margin: 38px 0;
+	box-shadow: 0px 3px 3px rgba(102, 102, 102, 0.25);
+
+}
