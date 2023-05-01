@@ -6,61 +6,80 @@ import "../styles/SignIn.css"
 
 
 function SignIn() {
-	const navigate = useNavigate();
-	const [isChecked, setIsChecked] = useState(false);
-	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [formValues, setFormValues] = useState({
+		username: '',
+		password: '',
+		confirmPassword: '',
+		agreeToTerms: false,
+	});
 
-	const handleCheck = () => {
-		setIsChecked(!isChecked);
+	const [allFieldsFilled, setAllFieldsFilled] = useState(false);
+
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setFormValues({ ...formValues, [name]: value });
 	};
 
-	const handleSignUpClick = () => {
-		// Send sign-up request here
-		navigate('/home');
+	const handleCheckboxChange = (event) => {
+		const { name, checked } = event.target;
+		setFormValues({ ...formValues, [name]: checked });
 	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		// Send sign-up request to server
+		// Navigate to home page
+	};
+
+	// Check if all required fields are filled out
+	React.useEffect(() => {
+		const { username, password, confirmPassword } = formValues;
+		if (username && password && confirmPassword) {
+			setAllFieldsFilled(true);
+		} else {
+			setAllFieldsFilled(false);
+		}
+	}, [formValues]);
+
 
 	return (
-		<Box className="bod" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-			<Typography variant="h4" component="h1" gutterBottom>
-				Sign Up
-			</Typography>
-			<Box sx={{ width: '100%', maxWidth: 400 }}>
-				<TextField
-				fullWidth
-				label="Email"
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
-				margin="normal"
-				variant="outlined"
-				/>
-				<TextField
-				fullWidth
-				label="Password"
-				type="password"
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-				margin="normal"
-				variant="outlined"
-				/>
-				<TextField label="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-				<FormControlLabel
-					control={<Checkbox checked={isChecked} onChange={handleCheck} />}
-					label="I agree to the terms and conditions."
-				/>
-				<Box sx={{ display: 'flex', justifyContent: 'center' }}>
-					<Button
-						variant="contained"
-						color="primary"
-						disabled={!isChecked}
-						onClick={handleSignUpClick}
-					>
-						Sign Up
-					</Button>
-				</Box>
-			</Box>
-    	</Box>
+		<form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input type="text" name="username" value={formValues.username} onChange={handleInputChange} />
+      </label>
+      <label>
+        Password:
+        <input type="password" name="password" value={formValues.password} onChange={handleInputChange} />
+      </label>
+      <label>
+        Confirm password:
+        <input type="password" name="confirmPassword" value={formValues.confirmPassword} onChange={handleInputChange} />
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          name="agreeToTerms"
+          checked={formValues.agreeToTerms}
+          onChange={handleCheckboxChange}
+          disabled={!allFieldsFilled}
+        />
+        I agree to the terms and conditions
+      </label>
+	  <label>
+        <input
+          type="checkbox"
+          name="agreeToTerms"
+          checked={formValues.agreeToTerms}
+          onChange={handleCheckboxChange}
+          disabled={!allFieldsFilled}
+        />
+        I agree to the terms and conditions
+      </label>
+      <button type="submit" disabled={!allFieldsFilled}>
+        Sign up
+      </button>
+    </form>
   )
 }
 

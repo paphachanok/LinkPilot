@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/SignUp.css'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 import { Card, Grid, Box, Typography, TextField, FormControlLabel, Checkbox } from '@mui/material'
@@ -13,9 +13,6 @@ function SignUp({userLogin, setUserLogin}) {
 	// const handleLogout = () => setUserLogin(false)
 
 	//! new
-	// function goToSignIn() {
-	// 	window.location.href = '/sign-in';
-	// }
 	const goToSignIn = () => {
 		navigate('/sign-in');
 	}
@@ -33,6 +30,7 @@ function SignUp({userLogin, setUserLogin}) {
 	const handleSignUpClick = () => {
 		// Send sign-up request here
 		navigate('/home');
+		// setUserLogin(true);
 	};
 
 	return (
@@ -49,17 +47,21 @@ function SignUp({userLogin, setUserLogin}) {
 					width="100%"
 					style={{height: '10%' }}
 				>
-					<Box
-						component='img'
-						className='logoTopS'
-						sx={{
-							width: 236,
-							marginTop: '15px',
-							display:{xs: "inline-block", md: "none"}
-						}}
-						alt="Logo"
-						src="/src/assets/miniLogo.svg"
-					/>
+					<Link to="/">
+						<Box
+							component='img'
+							className='logoTopS'
+							sx={{
+								width: 236,
+								marginTop: '15px',
+								display:{xs: "inline-block", md: "none"}
+							}}
+							alt="Logo"
+							src="/src/assets/miniLogo.svg"
+						/>
+					</Link>
+
+					<Link to="/">
 					<Box
 						component='img'
 						className='logoTopL'
@@ -71,63 +73,81 @@ function SignUp({userLogin, setUserLogin}) {
 						alt="Logo"
 						src="/src/assets/miniLogo.svg"
 					/>
+					</Link>
 				</Box>
 
 				<Grid item xs={12} className='gridItem1' style={{height: '70%', display: 'block'}} >
 					<Box  height={"30px"} style={{width: '100%' }}>
-						<Box
-							className='backS'
-							component='img'
-							sx={{
-								flex: 'right',
-								width: 24,
-								display:{xs: "inline-block", md: "none"}
-							}}
-							alt="Logo"
-							src="/src/assets/backS.png"
-						/>
-
-						<Box
-							className='backL'
-							component='img'
-							sx={{
-								width: 107,
-								display:{xs: "none", md: "inline-block"}
-							}}
-							alt="Logo"
-							src="/src/assets/backL.svg"
-						/>
+						<Link to="/">
+							<Box
+								className='backS'
+								component='img'
+								sx={{
+									flex: 'right',
+									width: 24,
+									display:{xs: "inline-block", md: "none"}
+								}}
+								alt="Logo"
+								src="/src/assets/backS.png"
+							/>
+						</Link>
+						<Link to="/" >
+							<Box
+								className='backL'
+								component='img'
+								sx={{
+									width: 107,
+									display:{xs: "none", md: "inline-block"}
+								}}
+								alt="Logo"
+								src="/src/assets/backL.svg"
+							/>
+						</Link>
 					</Box>
 
-
-					<Box sx={{ height: 500, display:{xs: "block", md: "none"}, }} >
-						<Box className='h1-S'>
-							<h1>Stay Organized.</h1>
+					<Box className='formS' sx={{ display:{xs: "flex", md: "none"}, flexDirection: 'column', alignItems: 'center' }} marginTop={2.5}  >
+						<Box className='h1-S'> <h1>Sign Up</h1> </Box>
+						<Box sx={{ display:{xs: "block", md: "none"}, width: '100%', maxWidth: 297 }}
+							alignItems={"center"}
+							justifyContent={"flex-start"}
+						>
+							<TextField
+								className='textfield'
+								type={"email"}
+								value={email}
+								variant="outlined"
+								sx={{width: "297px", height: "55px", marginBottom: "25px", backgroundColor: "white", borderRadius: "15px"}}
+								label='Gmail'
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+							<TextField
+								className='textfield'
+								type={"password"}
+								value={password}
+								sx={{width: "297px", height: "55px",marginBottom: "25px", backgroundColor: "white", borderRadius: "15px"}}
+								autoComplete="current-password"
+								label='Password'
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+							<TextField
+								className='textfield'
+								type={"text"}
+								value={username}
+								sx={{width: "297px", height: "55px", marginBottom: "18px", backgroundColor: "white", borderRadius: "15px"}}
+								label='Username'
+								onChange={(e) => setUsername(e.target.value)}
+							/>
+							<FormControlLabel
+								sx={{float: "left", marginBottom:"20px"}}
+								control={<Checkbox checked={isChecked} onChange={handleCheck} />}
+								// label="I agree to the terms and conditions."
+								label={ <Typography sx={{ fontSize: 13 }}>I agree to the terms and conditions.</Typography>} />
+							<Box sx={{ display: 'flex', justifyContent: 'center', width: "100%" }}>
+								<button className='getStarted-S' disabled={!isChecked} onClick={handleSignUpClick} > Get Started !</button>
+							</Box>
 						</Box>
-							<form>
-								<Box
-									display='flex'
-									flexDirection={"column"}
-									maxwidth={534}
-									alignItems={"center"}
-									justifyContent={"flex-start"}
-									margin={"auto"}
-									marginTop={5}
-
-								>
-									<Typography variant='h2' padding={3} textAlign={"center"} >Sign Up </Typography>
-									<TextField sx={{ width: "500px"}} margin="normal" type={"email"} variant='outlined' label="Gmail" />
-									<TextField margin="normal" type={"password"} variant='outlined' placeholder='Password' />
-									<TextField margin="normal" type={"text"} variant='outlined' placeholder='Username' />
-
-									<Button></Button>
-								</Box>
-							</form>
-						{/* <button className='getStarted-S' onClick={goToSignUp} > Get Started !</button> */}
-
 					</Box>
 
-					{/* <Box className='formL' sx={{ height: 500, display:{xs: "none", md: "block"}, flexDirection: 'column', alignItems: 'center'  }} > */}
 					<Box className='formL' sx={{ display:{xs: "none", md: "flex"}, flexDirection: 'column', alignItems: 'center' }} marginTop={2}  >
 						<Box className='h1-L'> <h1>Sign Up</h1> </Box>
 						<Box sx={{ display:{xs: "none", md: "block"}, width: '100%', maxWidth: 500 }}
