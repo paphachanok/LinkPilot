@@ -46,9 +46,9 @@
 	/* new */
 	font-family: 'Quantico';
 	background: #FF731D;
-	width: 143px;
+	width: 120px;
 	height: 57px;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .getStarted-L {
@@ -66,7 +66,7 @@
 	width: 143px;
 	height: 57px;
 	font-size: 15px;
-	margin-top: 5px;
+	margin-top: 0px;
 }
 
 .textfield fieldset {

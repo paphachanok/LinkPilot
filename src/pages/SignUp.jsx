@@ -2,10 +2,7 @@ import React from 'react'
 import '../styles/SignUp.css'
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-
-
 import { Card, Grid, Box, Typography, TextField, FormControlLabel, Checkbox } from '@mui/material'
-import { AppBar, Button, IconButton, Toolbar } from '@mui/material';
 
 function SignUp({userLogin, setUserLogin}) {
 	// ใช้เวลากดยอมรับ agreement
@@ -13,10 +10,6 @@ function SignUp({userLogin, setUserLogin}) {
 	// const handleLogout = () => setUserLogin(false)
 
 	//! new
-	const goToSignIn = () => {
-		navigate('/sign-in');
-	}
-
 	const navigate = useNavigate();
 	const [isChecked, setIsChecked] = useState(false);
 	const [username, setUsername] = useState("");
@@ -26,7 +19,6 @@ function SignUp({userLogin, setUserLogin}) {
 	const handleCheck = () => {
 		setIsChecked(!isChecked);
 	};
-
 	const handleSignUpClick = () => {
 		// Send sign-up request here
 		navigate('/home');
@@ -76,7 +68,7 @@ function SignUp({userLogin, setUserLogin}) {
 					</Link>
 				</Box>
 
-				<Grid item xs={12} className='gridItem1' style={{height: '70%', display: 'block'}} >
+				<Grid item xs={12} className='gridItem1' style={{height: '65%', display: 'block'}} >
 					<Box  height={"30px"} style={{width: '100%' }}>
 						<Link to="/">
 							<Box
@@ -138,7 +130,7 @@ function SignUp({userLogin, setUserLogin}) {
 								onChange={(e) => setUsername(e.target.value)}
 							/>
 							<FormControlLabel
-								sx={{float: "left", marginBottom:"20px"}}
+								sx={{float: "left", marginBottom:"5px"}}
 								control={<Checkbox checked={isChecked} onChange={handleCheck} />}
 								// label="I agree to the terms and conditions."
 								label={ <Typography sx={{ fontSize: 13 }}>I agree to the terms and conditions.</Typography>} />
@@ -181,7 +173,7 @@ function SignUp({userLogin, setUserLogin}) {
 								onChange={(e) => setUsername(e.target.value)}
 							/>
 							<FormControlLabel
-								sx={{ float: "left", marginBottom:"20px"}}
+								sx={{ float: "left", marginBottom:"10px"}}
 								control={<Checkbox checked={isChecked} onChange={handleCheck} />}
 								label="I agree to the terms and conditions."
 							/>
@@ -192,10 +184,15 @@ function SignUp({userLogin, setUserLogin}) {
 					</Box>
 				</Grid>
 
+				<Box className='gridItem2' sx={{ display:{xs: "flex", md: "none"}}} style={{height: '30%', width: '100%'}} justifyContent={"center"} >
+					<Typography sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 14, color: '#666666', marginTop: "32px" }} >Alreaday have an account?</Typography>
+					<Typography component={Link} to="/sign-in" sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 16, color: '#ff731d', marginTop: "30px", marginLeft: "10px" }} >Sign In</Typography>
+				</Box>
 
-				<Grid item xs={12} className='gridItem2' style={{height: '25%'}} >
-
-				</Grid>
+				<Box className='gridItem2' sx={{ display:{xs: "none", md: "flex"}}} style={{height: '30%', width: '100%'}} justifyContent={"center"} >
+					<Typography sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 18, color: '#666666', marginTop: "32px" }} >Alreaday have an account?</Typography>
+					<Typography component={Link} to="/sign-in" sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 20, color: '#ff731d', marginTop: "30px", marginLeft: "15px" }} >Sign In</Typography>
+				</Box>
 			</Grid>
 		</>
 	)

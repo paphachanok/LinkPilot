@@ -1,86 +1,171 @@
 import React from 'react'
-import { Card, Grid, Box, Button, Typography, TextField, FormControlLabel,  Checkbox } from '@mui/material'
+import '../styles/SignUp.css'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import "../styles/SignIn.css"
+import { useNavigate, Link } from 'react-router-dom';
+import { Card, Grid, Box, Typography, TextField, FormControlLabel, Checkbox } from '@mui/material'
 
+function SignIn({userLogin, setUserLogin}) {
+	// ใช้เวลากดยอมรับ agreement
+	// const handleLogin = () => setUserLogin(true)
+	// const handleLogout = () => setUserLogin(false)
 
-function SignIn() {
-	const [formValues, setFormValues] = useState({
-		username: '',
-		password: '',
-		confirmPassword: '',
-		agreeToTerms: false,
-	});
+	//! new
+	const navigate = useNavigate();
+	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
-	const [allFieldsFilled, setAllFieldsFilled] = useState(false);
-
-	const handleInputChange = (event) => {
-		const { name, value } = event.target;
-		setFormValues({ ...formValues, [name]: value });
+	const handleSignInClick = () => {
+		// Send sign-up request here
+		navigate('/home');
+		// setUserLogin(true);
 	};
-
-	const handleCheckboxChange = (event) => {
-		const { name, checked } = event.target;
-		setFormValues({ ...formValues, [name]: checked });
-	};
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		// Send sign-up request to server
-		// Navigate to home page
-	};
-
-	// Check if all required fields are filled out
-	React.useEffect(() => {
-		const { username, password, confirmPassword } = formValues;
-		if (username && password && confirmPassword) {
-			setAllFieldsFilled(true);
-		} else {
-			setAllFieldsFilled(false);
-		}
-	}, [formValues]);
-
 
 	return (
-		<form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input type="text" name="username" value={formValues.username} onChange={handleInputChange} />
-      </label>
-      <label>
-        Password:
-        <input type="password" name="password" value={formValues.password} onChange={handleInputChange} />
-      </label>
-      <label>
-        Confirm password:
-        <input type="password" name="confirmPassword" value={formValues.confirmPassword} onChange={handleInputChange} />
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          name="agreeToTerms"
-          checked={formValues.agreeToTerms}
-          onChange={handleCheckboxChange}
-          disabled={!allFieldsFilled}
-        />
-        I agree to the terms and conditions
-      </label>
-	  <label>
-        <input
-          type="checkbox"
-          name="agreeToTerms"
-          checked={formValues.agreeToTerms}
-          onChange={handleCheckboxChange}
-          disabled={!allFieldsFilled}
-        />
-        I agree to the terms and conditions
-      </label>
-      <button type="submit" disabled={!allFieldsFilled}>
-        Sign up
-      </button>
-    </form>
-  )
+		<>
+			<Grid
+				container
+				direction="row"
+				style={{ height: '100vh' }}
+			>
+				<Box
+					// bgcolor="red"
+					className='topBar'
+					display="flex"
+					width="100%"
+					style={{height: '10%' }}
+				>
+					<Link to="/">
+						<Box
+							component='img'
+							className='logoTopS'
+							sx={{
+								width: 236,
+								marginTop: '15px',
+								display:{xs: "inline-block", md: "none"}
+							}}
+							alt="Logo"
+							src="/src/assets/miniLogo.svg"
+						/>
+					</Link>
+
+					<Link to="/">
+					<Box
+						component='img'
+						className='logoTopL'
+						sx={{
+							width: 236,
+							marginTop: '15px',
+							display:{xs: "none", md: "inline-block"}
+						}}
+						alt="Logo"
+						src="/src/assets/miniLogo.svg"
+					/>
+					</Link>
+				</Box>
+
+				<Grid item xs={12} className='gridItem1' style={{height: '55%', display: 'block'}} >
+					<Box  height={"30px"} style={{width: '100%' }}>
+						<Link to="/">
+							<Box
+								className='backS'
+								component='img'
+								sx={{
+									flex: 'right',
+									width: 24,
+									display:{xs: "inline-block", md: "none"}
+								}}
+								alt="Logo"
+								src="/src/assets/backS.png"
+							/>
+						</Link>
+						<Link to="/" >
+							<Box
+								className='backL'
+								component='img'
+								sx={{
+									width: 107,
+									display:{xs: "none", md: "inline-block"}
+								}}
+								alt="Logo"
+								src="/src/assets/backL.svg"
+							/>
+						</Link>
+					</Box>
+
+					<Box className='formS' sx={{ display:{xs: "flex", md: "none"}, flexDirection: 'column', alignItems: 'center' }} marginTop={2.5}  >
+						<Box className='h1-S'> <h1>Sign In</h1> </Box>
+						<Box sx={{ display:{xs: "block", md: "none"}, width: '100%', maxWidth: 297 }}
+							alignItems={"center"}
+							justifyContent={"flex-start"}
+						>
+							<TextField
+								className='textfield'
+								type={"email"}
+								value={email}
+								variant="outlined"
+								sx={{width: "297px", height: "55px", marginBottom: "30px", marginTop:"5px", backgroundColor: "white", borderRadius: "15px"}}
+								label='Gmail'
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+							<TextField
+								className='textfield'
+								type={"password"}
+								value={password}
+								sx={{width: "297px", height: "55px",marginBottom: "30px", backgroundColor: "white", borderRadius: "15px"}}
+								autoComplete="current-password"
+								label='Password'
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+							<Box sx={{ display: 'flex', justifyContent: 'center', width: "100%",}}>
+								<button className='getStarted-S'  onClick={handleSignInClick} > Get Started !</button>
+							</Box>
+						</Box>
+					</Box>
+
+					<Box className='formL' sx={{ display:{xs: "none", md: "flex"}, flexDirection: 'column', alignItems: 'center' }} marginTop={2}  >
+						<Box className='h1-L'> <h1>Sign In</h1> </Box>
+						<Box sx={{ display:{xs: "none", md: "block"}, width: '100%', maxWidth: 500 }}
+							alignItems={"center"}
+							justifyContent={"flex-start"}
+						>
+							<TextField
+								className='textfield'
+								type={"email"}
+								value={email}
+								variant="outlined"
+								sx={{width: "500px", height: "55px", marginBottom: "30px", marginTop:"5px",backgroundColor: "white", borderRadius: "15px"}}
+								label='Gmail'
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+							<TextField
+								className='textfield'
+								type={"password"}
+								value={password}
+								sx={{width: "500px", height: "55px",marginBottom: "30px", backgroundColor: "white", borderRadius: "15px"}}
+								autoComplete="current-password"
+								label='Password'
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+							<Box sx={{ display: 'flex', justifyContent: 'center', width: "100%", marginTop: "20px" }}>
+								<button className='getStarted-L' onClick={handleSignInClick} > Get Started !</button>
+							</Box>
+						</Box>
+					</Box>
+				</Grid>
+
+				<Box className='gridItem2' sx={{ display:{xs: "flex", md: "none"}}} style={{height: '40%', width: '100%'}} justifyContent={"center"} >
+					<Typography sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 14, color: '#666666', marginTop: "32px" }} >New member?</Typography>
+					<Typography component={Link} to="/sign-up" sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 16, color: '#ff731d', marginTop: "30px", marginLeft: "10px" }} >Sign Up</Typography>
+				</Box>
+
+				<Box className='gridItem2' sx={{ display:{xs: "none", md: "flex"}}} style={{height: '40%', width: '100%'}} justifyContent={"center"} >
+					<Typography sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 18, color: '#666666', marginTop: "32px" }} >New member?</Typography>
+					<Typography component={Link} to="/sign-up" sx={{fontFamily: 'Ubuntu', fontWeight: 700,fontSize: 20, color: '#ff731d', marginTop: "30px", marginLeft: "15px" }} >Sign Up</Typography>
+				</Box>
+			</Grid>
+		</>
+	)
 }
 
 export default SignIn
