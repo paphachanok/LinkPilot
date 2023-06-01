@@ -61,8 +61,8 @@ function App() {
 					{/* <Route path="/sign-in" element={<Login />} /> */}
 					<Route path="/home" element={<Home />} />
 					{/* <Route path="/home" element={<NavBar />} />
-					<Route path="/home" element={<LinkCreateModal />} />
-					<Route path="/setting" element={<Setting />} /> */}
+					<Route path="/home" element={<LinkCreateModal />} /> */}
+					<Route path="/setting" element={<Setting />} />
 					<Route path="/*" element={<Error />} />
 				</Routes>
 

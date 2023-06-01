@@ -192,10 +192,9 @@ function NavBar() {
 						</Link>
 					)}
 
-
 					<Box
-						component='img'
-						className='account'
+						component={Link}
+						to="/setting"
 						sx={{
 							width: 36,
 							height: 36,
@@ -203,23 +202,32 @@ function NavBar() {
 							marginRight: "30px",
 							display: { xs: "inline-block", sm: "none" }
 						}}
-						alt="Logo"
-						src="/src/assets/account.svg"
-					/>
+					>
+						<img
+							alt="Logo"
+							src="/src/assets/account.svg"
+							style={{ width: '100%', height: '100%' }}
+						/>
+					</Box>
+
 
 					<Box
-						component='img'
-						className='account'
+						component={Link}
+						to="/setting"
 						sx={{
 							width: 46,
 							height: 46,
 							marginTop: '15px',
-							marginRight: "45px",
+							marginRight: "30px",
 							display: { xs: "none", sm: "inline-block" }
 						}}
-						alt="Logo"
-						src="/src/assets/account.svg"
-					/>
+					>
+						<img
+							alt="Logo"
+							src="/src/assets/account.svg"
+							style={{ width: '100%', height: '100%' }}
+						/>
+					</Box>
 
 				</Box>
 			</Box>

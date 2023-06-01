@@ -23,65 +23,6 @@ function Setting() {
 	<Box width="100%" height="900px" style={{maxHeight: '928px', overflowY: "auto" }} sx={{ backgroundColor: "white"}} >
 		{openModal && <DeleteAccount closeModal={setOpenModal} />}
 		<NavBar />
-		{/* <Box
-			bgcolor="white"
-			className='topBar'
-			display="grid"
-			gridTemplateColumns={"auto 1fr auto"}
-			width="100%"
-			style={{height: '80px' }}
-		>
-			<Link to="/">
-				<Box
-					component='img'
-					className='logoTopS'
-					sx={{
-						width: 236,
-						marginTop: '15px',
-						marginLeft: '30px',
-						display:{xs: "inline-block", md: "none"}
-					}}
-					alt="Logo"
-					src="/src/assets/miniLogo.svg"
-				/>
-			</Link>
-
-			<Link to="/">
-				<Box
-					component='img'
-					className='logoTopL'
-					sx={{
-						width: 236,
-						marginTop: '20px',
-						marginLeft: '58px',
-						display:{xs: "none", md: "inline-block"}
-					}}
-					alt="Logo"
-					src="/src/assets/miniLogo.svg"
-				/>
-			</Link>
-
-			<Box
-				component='img'
-				className='account'
-				sx={{
-					width: 46,
-					height: 46,
-					marginTop: '15px',
-					marginRight: "45px",
-					display:{xs: "none", sm: "inline-block"}
-				}}
-				alt="Logo"
-				src="/src/assets/account.svg"
-			/>
-		</Box>
-		<Box
-			sx={{display:{xs: "none", sm: "block", width: "90%",
-				borderTop: "1px solid #666666",
-				margin: "0px 0",
-				boxShadow: "0px 3px 3px rgba(102, 102, 102, 0.25)"
-			}}}>
-		</Box>
 		<Box  height={"30px"} style={{width: '100%' }}>
 			<Link to="/home">
 				<Box
@@ -110,7 +51,8 @@ function Setting() {
 					src="/src/assets/backL.svg"
 				/>
 			</Link>
-		</Box> */}
+		</Box>
+		
 
 		{/* body - S */}
 		<Box  margin={"0 auto"} marginTop={7} justifyContent={"center"} width={"297px"} sx={{ display:{xs: "block", md: "none"}}}>
