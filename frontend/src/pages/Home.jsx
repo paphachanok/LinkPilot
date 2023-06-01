@@ -155,7 +155,6 @@ function Home() {
 								title={links.title}
 								url={links.url}
 								description={links.description}
-								deadline={links.deadline}
 								setLink={setLink}
 							/>
 						))}

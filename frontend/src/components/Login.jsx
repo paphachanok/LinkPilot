@@ -52,30 +52,6 @@ function Login() {
 				});
 			  }
 
-			// ! old
-			// if (response.data.success) {
-			// 	console.log(response.data.user.username)
-			// 	setIsAuthorize(true)
-
-			// 	// ! here
-			// 	setUser({
-			// 		username: response.data.user.username,
-			// 	});
-
-			// 	// Cookies.set('userToken', response.user.token);
-			// 	// ! here
-			// 	Cookies.set('userToken', response.data.token);
-
-			// 	if (user) {
-			// 		console.log(response.data.user.username)
-			// 	}
-			// 	setStatus({
-			// 		msg: 'Login successful',
-			// 		severity: 'success'
-			// 	});
-			// 	navigate('/home');
-			// }
-
 		} catch (e) {
 			setUsername('');
 			setPassword('');

@@ -9,8 +9,7 @@ import Cookies from 'js-cookie';
 
 
 //! หน้าตา card ที่แสดง
-const LinkCard = ({ id, title, url, description, deadline, setLink }) => {
-	// const formattedDeadline = new Date(deadline).toLocaleDateString();
+const LinkCard = ({ id, title, url, description, setLink }) => {
 	const { status, setStatus } = useContext(GlobalContext);
 	const [previewData, setPreviewData] = useState(null);
 
@@ -21,6 +20,8 @@ const LinkCard = ({ id, title, url, description, deadline, setLink }) => {
 					params: {
 						id: id,
 						url: url,
+						// id: id,
+						// url: {url}
 					},
 				});
 				if (response.data) {
@@ -41,38 +42,45 @@ const LinkCard = ({ id, title, url, description, deadline, setLink }) => {
 	// ! 4.) delete
 	const handleDelete = async () => {
 		try {
-			const userToken = Cookies.get('UserToken');
-			const response = await Axios.delete('http://localhost:8000/deleteLink', {
-				headers: { Authorization: `Bearer ${userToken}` },
-				data: { id: id }
+		  const userToken = Cookies.get('userToken');
+		  console.log("here " + userToken);
+		  const response = await Axios.delete('http://localhost:8000/deleteLink',
+			{
+			  headers: {
+				Authorization: `Bearer ${userToken}`,
+			  },
+			  data: { id: id },
+			}
+		  );
+		  if (response.data.success) {
+			setStatus({
+			  msg: 'List Card has been deleted',
+			  severity: 'success',
 			});
-			if (response.data.success) {
-				setStatus({
-					msg: 'List Card has been delete',
-					severity: 'success'
-				});
-				setLink((link) => link.filter((l) => l.id !== link.id));
-			}
-			else {
-				console.log(response.data.error)
-				setStatus({
-					msg: response.data.error,
-					severity: 'error'
-				});
-			}
-		} catch (e) {
-			if (e instanceof AxiosError)
-				if (e.response)
-					return setStatus({
-						msg: e.response.data.error,
-						severity: 'error',
-					});
-			return setStatus({
-				msg: e.message,
+			setLink((links) => links.filter((link) => links.id !== id));
+		  } else {
+			console.log(response.data.error);
+			setStatus({
+			  msg: response.data.error,
+			  severity: 'error',
+			});
+		  }
+		} catch (error) {
+		  if (error instanceof AxiosError) {
+			if (error.response) {
+			  return setStatus({
+				msg: error.response.data.error,
 				severity: 'error',
-			});
+			  });
+			}
+		  }
+		  setStatus({
+			msg: error.message,
+			severity: 'error',
+		  });
 		}
-	}
+	  };
+
 
 	return (
 

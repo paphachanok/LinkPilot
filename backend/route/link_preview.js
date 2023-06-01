@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 module.exports = async (req, res) => {
 	try {
 		const { url } = req.body;
-		// console.log(url)
+		console.log(url)
 
 		const response = await Axios.get(url);
 		console.log(response);
