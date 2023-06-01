@@ -22,36 +22,13 @@ function Splash({userLogin, setUserLogin}) {
 
   return (
 	<>
-		{/* <AppBar sx={{backgroundColor:"#20232a"}} >
-			<Toolbar sx={{display:"flex", justifyContent:"space-between"}} >
-				จะไม่แสดง icon จนกว่าหน้าจอจะเล็ก
-				<IconButton
-					color="inherit"
-					edge="start"
-					sx={{ mr: 2, display:{sm: "block", md: "none"}}}
-				>
-					<MenuIcon />
-				</IconButton>
-
-				<Box sx={{display:{xs: "none", md: "block"}}} >
-					<Box>
-						{navItems.map((e) => (
-							<Button key={e} sx={{color: "#fff" }} >
-								{e}
-							</Button>
-						))}
-					</Box>
-				</Box>
-				<Button></Button>
-			</Toolbar>
-		</AppBar> */}
-
 		<Grid
 			container
 			direction="row"
-			style={{ height: '100vh' }}
+			// style={{ height: '100vh' }}
+			style={{ maxHeight: '928px', overflowY: "auto" }}
 		>
-			<Grid item xs={12} className='gridItem1' style={{height: '50%' }} >
+			<Grid item xs={12} className='gridItem1' style={{height: '400px' }} >
 				<Box
 					// bgcolor="red"
 					display="flex"
@@ -106,7 +83,7 @@ function Splash({userLogin, setUserLogin}) {
 			</Grid>
 
 
-			<Grid item xs={12} className='gridItem2' style={{}} >
+			<Grid item xs={12} className='gridItem2' style={{height: '542px'}} >
 				<Box sx={{ height: 500, display:{xs: "inline-block", md: "none"}, }} >
 					<Box className='h1-S'>
 						<h1>Stay Organized.</h1>
