@@ -28,9 +28,6 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 					setPreviewData(response.data);
 				}
 			} catch (error) {
-				console.log("Something is wrong");
-				// console.error('Error fetching link preview data:', error);
-				// console.log("Error fetching link preview data:", error.message);
 				console.error('Error fetching link preview data:', error.response.data.error);
 			}
 		};
