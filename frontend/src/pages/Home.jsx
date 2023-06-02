@@ -5,14 +5,12 @@ import { useState, useEffect, useContext } from 'react'
 import LinkCard from '../components/LinkCard';
 import LinkCreateModal from "../components/LinkCreateModal"
 import NavBar from '../components/NavBar';
+import ImageCard from "../components/ImageCard"
 
 import Cookies from 'js-cookie';
 import { AxiosError } from "axios"
 import Axios from '../share/AxiosInstance';
 import GlobalContext from "../share/GlobalContext"
-// import LinkEditModal from "../components/LinkEditModal"
-// import LinkDetailModal from "../components/LinkDetailModal"
-
 
 
 function Home() {
@@ -69,7 +67,7 @@ function Home() {
 
 
 	return (
-		<Box width="100%" height={"100vh"} style={{ overflowY: "auto" }} sx={{ backgroundColor: "white" }} >
+		<Box width="100%" height={"100%"} style={{ overflowY: "auto" }} sx={{ backgroundColor: "white" }} >
 			<NavBar />
 
 			<Box width={"100%"} height={"100vh"} display={"flex"} flexDirection={"row"} >
@@ -163,8 +161,52 @@ function Home() {
 
 
 				{/* right */}
-				<Box sx={{ width: "30%", height: "100%", display: { xs: "none", md: "flex" } }} bgcolor={"#fff7e9"} >
-
+				<Box
+					sx={{
+						width: "30%",
+						height: "auto",
+						display: { xs: "none", md: "flex" },
+						bgcolor: "#fff7e9",
+						flexDirection: "column",
+						alignItems: "flex-start",
+						paddingTop: "30px",
+						gap: 1,
+						position: "relative"
+					}}
+				>
+					<Typography sx={{ marginLeft: "50px", fontWeight: "bold" }} >Visit Today</Typography>
+					<Box
+						sx={{
+							display: {
+								xs: "none", sm: "block", width: "75%",
+								borderTop: "2px solid #666666",
+								marginLeft: "50px",
+								boxShadow: "0px 2px 3px rgba(102, 102, 102, 0.25)"
+							}
+						}}
+					>
+					</Box>
+					<Box
+						sx={{
+							width: "100%",
+							height: "auto",
+							display: { xs: "none", md: "flex" },
+							flexDirection: "column",
+							alignItems: "center",
+							paddingTop: "30px",
+							gap: 4,
+						}}
+					>
+						{link.map((links) => (
+							<ImageCard
+								key={links.link_id} // Add key prop
+								id={links.link_id}
+								title={links.title}
+								url={links.url}
+								description={links.description}
+							/>
+						))}
+					</Box>
 				</Box>
 			</Box>
 

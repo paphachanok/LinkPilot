@@ -2,8 +2,8 @@ const Axios = require("axios");
 const cheerio = require("cheerio");
 
 // const defaultUrl = "https://www.instagram.com/p/CWxSPnevlp6/?utm_source=ig_web_copy_link&igshid=MmJiY2I4NDBkZg==";
-const defaultTitle = "The Open Graph data cannot be extracted, but you can click to navigate to the page";
-const defaultDescription = "";
+const defaultTitle = "";
+const defaultDescription = "The Open Graph data cannot be extracted, but you can click to navigate to the page";
 
 
 module.exports = async (req, res) => {

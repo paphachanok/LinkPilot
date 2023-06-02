@@ -1,6 +1,6 @@
 import "../styles/LinkCard.css"
 import React from 'react';
-import { Box, Typography, Button, TextField } from '@mui/material';
+import { Box, Typography, Button} from '@mui/material';
 
 import { useEffect, useState, useContext } from "react";
 import { AxiosError } from "axios"
@@ -174,7 +174,7 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 			flexDirection={"row"}
 			padding={2.5}
 			sx={{
-				gap: "20px", height: { xs: 200, md: 280 },
+				gap: "20px", height: { xs: 280, md: 280 },
 			}}
 		>
 			{/* left */}
@@ -272,7 +272,7 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 					flexDirection={"row"}
 
 				>
-					<Typography
+					{/* <Typography
 						sx={{
 							fontFamily: "Ubuntu",
 							fontWeight: "medium",
@@ -285,9 +285,9 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 							alignSelf: "flex-end"
 						}} >
 						Reminder: 23/04/2023
-					</Typography>
+					</Typography> */}
 
-					<Box sx={{ marginLeft: "auto", marginTop: "20px" }}  >
+					<Box sx={{ marginLeft: "auto", marginTop: "20px" }} gap={2} >
 						{editMode ? (
 							<>
 								<Button

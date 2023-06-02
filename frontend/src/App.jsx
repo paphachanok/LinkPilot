@@ -15,7 +15,7 @@ import NavBar from './components/NavBar';
 import Login from './components/Login';
 import LinkCreateModal from './components/LinkCreateModal';
 import LinkCard from './components/LinkCard';
-
+import ImageCard from './components/ImageCard';
 
 function App() {
 	const [status, setStatus] = useState('');
@@ -58,10 +58,7 @@ function App() {
 					<Route exect path="/" element={<Splash />} />
 					<Route path="/sign-up" element={<SignUp />} />
 					<Route path="/sign-in" element={<SignIn />} />
-					{/* <Route path="/sign-in" element={<Login />} /> */}
 					<Route path="/home" element={<Home />} />
-					{/* <Route path="/home" element={<NavBar />} />
-					<Route path="/home" element={<LinkCreateModal />} /> */}
 					<Route path="/setting" element={<Setting />} />
 					<Route path="/*" element={<Error />} />
 				</Routes>
@@ -79,6 +76,7 @@ function App() {
 						<Home />
 						<NavBar />
 						<LinkCard />
+						<ImageCard />
 						<LinkCreateModal />
 						<Setting />
 						<Error />

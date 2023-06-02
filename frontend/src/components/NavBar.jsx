@@ -137,7 +137,7 @@ function NavBar() {
 				<Box bgcolor={""} sx={{ marginLeft: "auto", display: "flex", flexDirection: "row", }} >
 
 					{isAuthorize ? (
-						<Box sx={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+						<Box sx={{ display: {xs: "none", sm: "flex"}, alignItems: 'center', gap: '2rem' }}>
 							<Typography variant="body1" sx={{ fontWeight: 'bold', color: "#ff731d" }}>
 								Welcome, &nbsp; {user}
 							</Typography>
