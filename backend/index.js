@@ -53,7 +53,7 @@ app.get("/getUser", require("./route/getUser"));
 app.get("/link-preview", require("./route/link_preview"));
 app.post("/createLink", require("./route/createLink"));
 app.delete("/deleteLink", require("./route/deleteLink"));
-// app.patch('/note', editNote);
+app.patch("/editLink", require("./route/editLink"));
 
 // app.get("/check", require("./route/ckeck_login"));
 app.get("/getAllLink", require("./route/get_all_link"));

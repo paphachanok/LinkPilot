@@ -11,12 +11,135 @@ import Cookies from 'js-cookie';
 //! หน้าตา card ที่แสดง
 const LinkCard = ({ id, title, url, description, setLink }) => {
 	const { status, setStatus } = useContext(GlobalContext);
+	const [editMode, setEditMode] = useState(false);
 	const [previewData, setPreviewData] = useState(null);
+
+	const [editedTitle, setEditedTitle] = useState(title);
+	const [editedUrl, setEditedUrl] = useState(url);
+	const [editedDescrip, setEditedDescrip] = useState(description);
+
+	const handleEdit = () => {
+		setEditMode(true);
+	};
+
+	const handleSave = async () => {
+		if (!validateForm()) return;
+		try {
+			const userToken = Cookies.get('userToken');
+			const response = await Axios.patch(`http://localhost:8000/editLink`, {
+				id,
+				title: editedTitle,
+				url: editedUrl,
+				description: editedDescrip
+			}, { headers: { Authorization: `Bearer ${userToken}` } });
+			if (response.data.success) {
+				setStatus({
+					msg: 'Update successfully',
+					severity: 'success'
+				});
+				setLink(prevCards => {
+					return prevCards.map(card => {
+						if (card.id === id) {
+							return {
+								...card,
+								title: editedTitle,
+								url: editedUrl,
+								description: editedDescrip
+							};
+						}
+						return card;
+					})
+				});
+
+				// console.log(location)
+				setEditMode(false);
+			}
+			else {
+				console.log(response.data.error)
+				setStatus({
+					msg: response.data.error,
+					severity: 'error'
+				});
+			}
+		} catch (e) {
+			if (e instanceof AxiosError)
+				if (e.response)
+					return setStatus({
+						msg: e.response.data.error,
+						severity: 'error',
+					});
+			return setStatus({
+				msg: e.message,
+				severity: 'error',
+			});
+		}
+	};
+
+	const validateForm = () => {
+		let isValid = true;
+		if (!editedTitle) {
+			setStatus({
+				msg: 'Title is required',
+				severity: 'error'
+			});
+			isValid = false;
+		}
+		if (!editedUrl) {
+			setStatus({
+				msg: 'Url is required',
+				severity: 'error'
+			});
+			isValid = false;
+		}
+		return isValid;
+	}
+
+	// ! 4.) delete
+	const handleDelete = async () => {
+		try {
+			const userToken = Cookies.get('userToken');
+			console.log("here " + userToken);
+			const response = await Axios.delete(
+				`http://localhost:8000/deleteLink?id=${id}`,
+				{
+					headers: {
+						Authorization: `Bearer ${userToken}`,
+					},
+				}
+			);
+			if (response.data.success) {
+				setStatus({
+					msg: 'List Card has been deleted',
+					severity: 'success',
+				});
+				setLink((links) => links.filter((link) => link.id !== id));
+			} else {
+				console.log(response.data.error);
+				setStatus({
+					msg: response.data.error,
+					severity: 'error',
+				});
+			}
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				if (error.response) {
+					return setStatus({
+						msg: error.response.data.error,
+						severity: 'error',
+					});
+				}
+			}
+			setStatus({
+				msg: error.message,
+				severity: 'error',
+			});
+		}
+	};
 
 	useEffect(() => {
 		const fetchPreviewData = async () => {
 			try {
-				const response = await Axios.get(`http://localhost:8000/link-preview?url=${url}`, );
+				const response = await Axios.get(`http://localhost:8000/link-preview?url=${url}`,);
 				// const response = await Axios.get('http://localhost:8000/link-preview', {
 				// 	params: {
 				// 		id: id,
@@ -35,88 +158,7 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 		fetchPreviewData();
 	}, []);
 
-	// ! 4.) delete
-	const handleDelete = async () => {
-		try {
-		  const userToken = Cookies.get('userToken');
-		  console.log("here " + userToken);
-		  const response = await Axios.delete(
-			`http://localhost:8000/deleteLink?id=${id}`,
-			{
-			  headers: {
-				Authorization: `Bearer ${userToken}`,
-			  },
-			}
-		  );
-		  if (response.data.success) {
-			setStatus({
-			  msg: 'List Card has been deleted',
-			  severity: 'success',
-			});
-			setLink((links) => links.filter((link) => link.id !== id));
-		  } else {
-			console.log(response.data.error);
-			setStatus({
-			  msg: response.data.error,
-			  severity: 'error',
-			});
-		  }
-		} catch (error) {
-		  if (error instanceof AxiosError) {
-			if (error.response) {
-			  return setStatus({
-				msg: error.response.data.error,
-				severity: 'error',
-			  });
-			}
-		  }
-		  setStatus({
-			msg: error.message,
-			severity: 'error',
-		  });
-		}
-	  };
 
-	// const handleDelete = async () => {
-	// 	try {
-	// 	  const userToken = Cookies.get('userToken');
-	// 	  console.log("here " + userToken);
-	// 	  const response = await Axios.delete('http://localhost:8000/deleteLink',
-	// 		{
-	// 		  headers: {
-	// 			Authorization: `Bearer ${userToken}`,
-	// 		  },
-	// 		  data: { id: id },
-	// 		}
-	// 	  );
-	// 	  if (response.data.success) {
-	// 		setStatus({
-	// 		  msg: 'List Card has been deleted',
-	// 		  severity: 'success',
-	// 		});
-	// 		setLink((links) => links.filter((link) => links.id !== id));
-	// 	  } else {
-	// 		console.log(response.data.error);
-	// 		setStatus({
-	// 		  msg: response.data.error,
-	// 		  severity: 'error',
-	// 		});
-	// 	  }
-	// 	} catch (error) {
-	// 	  if (error instanceof AxiosError) {
-	// 		if (error.response) {
-	// 		  return setStatus({
-	// 			msg: error.response.data.error,
-	// 			severity: 'error',
-	// 		  });
-	// 		}
-	// 	  }
-	// 	  setStatus({
-	// 		msg: error.message,
-	// 		severity: 'error',
-	// 	  });
-	// 	}
-	//   };
 
 
 	return (
@@ -165,7 +207,11 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 							marginLeft: "30px",
 						}}
 					>
-						{title}
+						{editMode ? (
+							<input type="text" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+						) : (
+							{ title }
+						)}
 					</Typography>
 				</Box>
 				<Box
@@ -191,7 +237,11 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 							marginLeft: "30px",
 						}}
 					>
-						{url}
+						{editMode ? (
+							<input type="text" value={editedUrl} onChange={(e) => setEditedUrl(e.target.value)} />
+						) : (
+							{ url }
+						)}
 					</Typography>
 				</Box>
 
@@ -208,7 +258,13 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 					sx={{ overflowY: "auto" }}
 				>
 					<Typography sx={{ fontFamily: "Ubuntu", fontWeight: "bold", fontSize: "14px", color: "#333333", textAlign: "left", marginBottom: "5px" }} >Description:</Typography>
-					<Typography sx={{ fontFamily: "Ubuntu", fontWeight: "light", fontSize: "11px", color: "#333333", textAlign: "left" }} >{description}</Typography>
+					<Typography sx={{ fontFamily: "Ubuntu", fontWeight: "light", fontSize: "11px", color: "#333333", textAlign: "left" }} >
+						{editMode ? (
+							<input type="text" value={editedDescrip} onChange={(e) => setEditedDescrip(e.target.value)} />
+						) : (
+							{ description }
+						)}
+					</Typography>
 				</Box>
 				<Box
 					display={"flex"}
@@ -231,50 +287,100 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 					</Typography>
 
 					<Box sx={{ marginLeft: "auto", marginTop: "20px" }}  >
+						{editMode ? (
+							<>
+								<Button
+									onClick={() => setEditMode(false)}
+									variant="contained"
+									size="medium"
+									sx={{
+										backgroundColor: "#ff731d",
+										color: "#fff",
+										fontFamily: "Quantico",
+										fontWeight: "bold",
+										fontSize: "12px",
+										borderRadius: "15px",
+										border: "2px solid #ffcbaa",
+										marginRight: "15px",
+										'&:hover': {
+											backgroundColor: "red"
+										}
+									}}
+									style={{ color: "white" }}
+								>
+									cancle
+								</Button>
+								<Button
+									onClick={handleSave}
+									variant="contained"
+									size="medium"
+									sx={{
+										width: "80px",
+										backgroundColor: "white",
+										fontFamily: "Quantico",
+										fontWeight: "bold",
+										fontSize: "12px",
+										borderRadius: "12px",
+										border: "2px solid #FF6100",
+										marginRight: "10px",
+										'&:hover': {
+											border: "2px solid red",
+											backgroundColor: "white"
+										}
+									}}
+									style={{ color: "#ff731d" }}
+								>
+									save
+								</Button>
+							</>
+						) : (
+							<>
+								<Button
+									onClick={handleDelete}
+									variant="contained"
+									size="medium"
+									sx={{
+										backgroundColor: "#ff731d",
+										color: "#fff",
+										fontFamily: "Quantico",
+										fontWeight: "bold",
+										fontSize: "12px",
+										borderRadius: "15px",
+										border: "2px solid #ffcbaa",
+										marginRight: "15px",
+										'&:hover': {
+											backgroundColor: "red"
+										}
+									}}
+									style={{ color: "white" }}
+								>
+									delete
+								</Button>
+								<Button
+									onClick={handleEdit}
+									variant="contained"
+									size="medium"
+									sx={{
+										width: "80px",
+										backgroundColor: "white",
+										fontFamily: "Quantico",
+										fontWeight: "bold",
+										fontSize: "12px",
+										borderRadius: "12px",
+										border: "2px solid #FF6100",
+										marginRight: "10px",
+										'&:hover': {
+											border: "2px solid red",
+											backgroundColor: "white"
+										}
+									}}
+									style={{ color: "#ff731d" }}
+								>
+									edit
+								</Button>
+							</>
+						)}
 
-						<Button
-							onClick={handleDelete}
-							variant="contained"
-							size="medium"
-							sx={{
-								backgroundColor: "#ff731d",
-								color: "#fff",
-								fontFamily: "Quantico",
-								fontWeight: "bold",
-								fontSize: "12px",
-								borderRadius: "15px",
-								border: "2px solid #ffcbaa",
-								marginRight: "15px",
-								'&:hover': {
-									backgroundColor: "red"
-								}
-							}}
-							style={{ color: "white" }}
-						>
-							delete
-						</Button>
-						<Button
-							// onClick={() => closeModal(false)}
-							variant="contained"
-							size="medium"
-							sx={{
-								width: "80px",
-								backgroundColor: "white",
-								fontFamily: "Quantico",
-								fontWeight: "bold",
-								fontSize: "12px",
-								borderRadius: "12px",
-								border: "2px solid #FF6100",
-								marginRight: "10px",
-								'&:hover': {
-									border: "2px solid red",
-									backgroundColor: "white"
-								}
-							}}
-							style={{ color: "#ff731d" }}
-						>
-							edit
-						</Button>
 					</Box>
 				</Box>
 
@@ -327,7 +433,7 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 				)}
 			</Box>
 
-		</Box>
+		</Box >
 	);
 };
 
