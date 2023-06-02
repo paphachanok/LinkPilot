@@ -3,10 +3,7 @@
 The goal of LinkPilots is to develop a web application that makes it simple for users to collect, organize, and distribute their links. Users frequently run into problems like forgetting to bookmark important websites or having trouble finding previously saved URLs.
 <br>
 <br>
-Our main goal is to provide a user-friendly design that makes it easier to gather and organize connections, especially those that are pertinent to users' studies.
-<br>
-<br>
-We also hope to offer a management tool that helps users properly cite their sources.
+Our main goal is to provide a user-friendly design that makes it easier to gather and organize connections. Additionally, we hope to offer a management tool that helps users properly cite their sources.
 
 
 ## Stack Technology
