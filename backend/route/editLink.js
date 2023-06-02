@@ -4,7 +4,7 @@ var jwt = require("jsonwebtoken");
 module.exports = (req, res) => {
 	const authHeader = req.headers.authorization;
 	const token = authHeader && authHeader.split(" ")[1];
-	console.log(token + " token in update")
+	// console.log(token + " token in update")
 	const { id, title, url, description } = req.body;
 
 	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");

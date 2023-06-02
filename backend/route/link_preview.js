@@ -8,7 +8,7 @@ const defaultDescription = "The Open Graph data cannot be extracted, but you can
 module.exports = async (req, res) => {
 	try {
 		const { url } = req.query;
-		console.log(url);
+		// console.log(url);
 		const requestUrl = url || defaultUrl; // Use the provided URL or the default URL if not provided
 
 		const response = await Axios.get(requestUrl);

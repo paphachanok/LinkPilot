@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
 	const token = req.cookies.userToken;
 
 	var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
-	console.log(decoded.userId);
+	// console.log(decoded.userId);
 	const { title, url, description } = req.body;
 
 	var sql = mysql.format(

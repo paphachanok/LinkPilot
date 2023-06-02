@@ -51,8 +51,6 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 						return card;
 					})
 				});
-
-				// console.log(location)
 				setEditMode(false);
 			}
 			else {

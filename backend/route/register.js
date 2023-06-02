@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 module.exports = async (req, res) => {
 	const { username, email, password } = req.body;
 	const salt1 = await bcrypt.genSalt(10);
-	console.log("Salt #1: ", salt1);
+	// console.log("Salt #1: ", salt1);
 	const hash1 = await bcrypt.hash(password, salt1);
-	console.log("Hash #1: ", hash1);
+	// console.log("Hash #1: ", hash1);
 
 	var sql = mysql.format(
 		"INSERT INTO Users (username, email, password, hashed_password) VALUES (?, ?, ?, ?)",
