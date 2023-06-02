@@ -13,7 +13,6 @@ function Setting() {
 	const [openModal, setOpenModal] = useState(false);
 	const navigate = useNavigate();
 	const logout = () => {
-		console.log("outtt")
 		setUser();
 		Cookies.remove('UserToken');
 		navigate("/");
@@ -52,7 +51,7 @@ function Setting() {
 				/>
 			</Link>
 		</Box>
-		
+
 
 		{/* body - S */}
 		<Box  margin={"0 auto"} marginTop={7} justifyContent={"center"} width={"297px"} sx={{ display:{xs: "block", md: "none"}}}>

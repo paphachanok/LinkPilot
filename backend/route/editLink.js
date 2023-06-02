@@ -2,7 +2,9 @@ const mysql = require("mysql2");
 var jwt = require("jsonwebtoken");
 
 module.exports = (req, res) => {
-    const token = req.cookies.userToken;
+    // const token = req.cookies.userToken;
+	const authHeader = req.headers.authorization;
+  	const token = authHeader && authHeader.split(" ")[1];
 	console.log(token + " token in update")
     const { id, title, url, description } = req.body;
 

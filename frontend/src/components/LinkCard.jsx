@@ -1,5 +1,6 @@
+import "../styles/LinkCard.css"
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, TextField } from '@mui/material';
 
 import { useEffect, useState, useContext } from "react";
 import { AxiosError } from "axios"
@@ -208,9 +209,9 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 						}}
 					>
 						{editMode ? (
-							<input type="text" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+							<input type="text" class="styled-input-title" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
 						) : (
-							{ title }
+							title
 						)}
 					</Typography>
 				</Box>
@@ -238,9 +239,9 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 						}}
 					>
 						{editMode ? (
-							<input type="text" value={editedUrl} onChange={(e) => setEditedUrl(e.target.value)} />
+							<input type="text" class="styled-input-url" value={editedUrl} onChange={(e) => setEditedUrl(e.target.value)} />
 						) : (
-							{ url }
+							url
 						)}
 					</Typography>
 				</Box>
@@ -260,9 +261,9 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 					<Typography sx={{ fontFamily: "Ubuntu", fontWeight: "bold", fontSize: "14px", color: "#333333", textAlign: "left", marginBottom: "5px" }} >Description:</Typography>
 					<Typography sx={{ fontFamily: "Ubuntu", fontWeight: "light", fontSize: "11px", color: "#333333", textAlign: "left" }} >
 						{editMode ? (
-							<input type="text" value={editedDescrip} onChange={(e) => setEditedDescrip(e.target.value)} />
+							<textarea type="text" class="styled-input-descrip" value={editedDescrip} onChange={(e) => setEditedDescrip(e.target.value)} ></textarea>
 						) : (
-							{ description }
+							description
 						)}
 					</Typography>
 				</Box>
@@ -417,7 +418,7 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 						<a href={url} target="_blank" >
 							<img
 								src={previewData.image}
-								alt="Preview"
+								alt="Click to go to the Link"
 								style={{ width: "100%", height: "auto", objectFit: "cover" }}
 							/>
 						</a>

@@ -159,30 +159,6 @@ function Home() {
 							/>
 						))}
 					</Box>
-
-					{/* senior */}
-					{/* {user ? (
-						link.length === 0 ? (
-							<Typography textAlign="center" fontSize={18} color="white" fontWeight={300} marginTop={8}>
-								No note to show... <br />
-								Let's create a new note.
-							</Typography>
-						) : (
-							<Box width={"85%"} height={"100%"} display={"flex"} flexDirection={"column"}  >
-								<LinkCard name={"Google"} description={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"} />
-								<LinkCard name={"Google"} description={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"} />
-								<LinkCard name={"Google"} description={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"} />
-								{link.map((link) => (
-										<LinkCard name={link.name} deadline={link.deadline} />
-								))}
-							</Box>
-						)
-					) : (
-						<Typography textAlign="center" fontSize={18} color="white" fontWeight={300} marginTop={8}>
-							No note to show... <br />
-							Please login to create a new note.
-						</Typography>
-					)} */}
 				</Box>
 
 
