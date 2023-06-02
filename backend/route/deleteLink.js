@@ -2,8 +2,12 @@ var jwt = require("jsonwebtoken");
 
 module.exports = (req, res) => {
 	try {
-		const token = req.cookies.userToken;
-		const { id } = req.body;
+		const authHeader = req.headers.authorization;
+  		const token = authHeader && authHeader.split(" ")[1]; // Extract the token from the Authorization header
+		// const token = req.cookies.userToken;
+		console.log(token + " tokennn")
+		const { id } = req.query;
+		console.log(id);
 
 		var decoded = jwt.verify(token, "ZJGX1QL7ri6BGJWj3t");
 		console.log(decoded);
@@ -33,7 +37,7 @@ module.exports = (req, res) => {
 		res.json({
 			success: false,
 			data: null,
-			error: "Invalid or expired JWT token",
+			error: "request does not reach here",
 		});
 	}
 };

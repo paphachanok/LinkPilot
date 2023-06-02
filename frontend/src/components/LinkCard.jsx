@@ -16,14 +16,13 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 	useEffect(() => {
 		const fetchPreviewData = async () => {
 			try {
-				const response = await Axios.get('http://localhost:8000/link-preview', {
-					params: {
-						id: id,
-						url: url,
-						// id: id,
-						// url: {url}
-					},
-				});
+				const response = await Axios.get(`http://localhost:8000/link-preview?url=${url}`, );
+				// const response = await Axios.get('http://localhost:8000/link-preview', {
+				// 	params: {
+				// 		id: id,
+				// 		url: url,
+				// 	},
+				// });
 				if (response.data) {
 					console.log("Sending is success");
 					setPreviewData(response.data);
@@ -44,12 +43,12 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 		try {
 		  const userToken = Cookies.get('userToken');
 		  console.log("here " + userToken);
-		  const response = await Axios.delete('http://localhost:8000/deleteLink',
+		  const response = await Axios.delete(
+			`http://localhost:8000/deleteLink?id=${id}`,
 			{
 			  headers: {
 				Authorization: `Bearer ${userToken}`,
 			  },
-			  data: { id: id },
 			}
 		  );
 		  if (response.data.success) {
@@ -57,7 +56,7 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 			  msg: 'List Card has been deleted',
 			  severity: 'success',
 			});
-			setLink((links) => links.filter((link) => links.id !== id));
+			setLink((links) => links.filter((link) => link.id !== id));
 		  } else {
 			console.log(response.data.error);
 			setStatus({
@@ -80,6 +79,47 @@ const LinkCard = ({ id, title, url, description, setLink }) => {
 		  });
 		}
 	  };
+
+	// const handleDelete = async () => {
+	// 	try {
+	// 	  const userToken = Cookies.get('userToken');
+	// 	  console.log("here " + userToken);
+	// 	  const response = await Axios.delete('http://localhost:8000/deleteLink',
+	// 		{
+	// 		  headers: {
+	// 			Authorization: `Bearer ${userToken}`,
+	// 		  },
+	// 		  data: { id: id },
+	// 		}
+	// 	  );
+	// 	  if (response.data.success) {
+	// 		setStatus({
+	// 		  msg: 'List Card has been deleted',
+	// 		  severity: 'success',
+	// 		});
+	// 		setLink((links) => links.filter((link) => links.id !== id));
+	// 	  } else {
+	// 		console.log(response.data.error);
+	// 		setStatus({
+	// 		  msg: response.data.error,
+	// 		  severity: 'error',
+	// 		});
+	// 	  }
+	// 	} catch (error) {
+	// 	  if (error instanceof AxiosError) {
+	// 		if (error.response) {
+	// 		  return setStatus({
+	// 			msg: error.response.data.error,
+	// 			severity: 'error',
+	// 		  });
+	// 		}
+	// 	  }
+	// 	  setStatus({
+	// 		msg: error.message,
+	// 		severity: 'error',
+	// 	  });
+	// 	}
+	//   };
 
 
 	return (
