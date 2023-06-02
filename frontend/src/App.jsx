@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import './App.css'
-import { Route, Routes, NavLink, useParams } from 'react-router-dom'
+import { Route, Routes, } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import Splash from "./pages/Splash";

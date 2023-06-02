@@ -8,11 +8,6 @@ import MenuIcon from "@mui/icons-material/Menu"
 
 function Splash({userLogin, setUserLogin}) {
 
-	//! assignment
-	// const handleLogin = () => setUserLogin(true)
-	// const handleLogout = () => setUserLogin(false)
-
-	// ! new
 	function goToSignUp() {
 		window.location.href = '/sign-up';
 	}
@@ -25,7 +20,6 @@ function Splash({userLogin, setUserLogin}) {
 		<Grid
 			container
 			direction="row"
-			// style={{ height: '100vh' }}
 			style={{ maxHeight: '928px', overflowY: "auto" }}
 		>
 			<Grid item xs={12} className='gridItem1' style={{height: '400px' }} >
@@ -110,13 +104,6 @@ function Splash({userLogin, setUserLogin}) {
 
 			</Grid>
 		</Grid>
-
-		{/* //! assignment */ }
-		{/* {userLogin ? (
-			<button className='login' onClick={handleLogout} >Logout</button>
-		) : (
-			<button className='login' onClick={handleLogin} >Login</button>
-		)} */}
 	</>
   )
 }

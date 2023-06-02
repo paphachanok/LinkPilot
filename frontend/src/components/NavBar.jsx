@@ -47,45 +47,6 @@ function NavBar() {
 		refreshPage()
 	};
 
-	// const getUserData = () => {
-	// 	Axios.get('/getUser')
-	// 	  .then((response) => {
-	// 		const responseData = response.data;
-	// 		if (responseData.success) {
-	// 		  setUser(responseData.data.username);
-	// 		} else {
-	// 		  // Handle unsuccessful response
-	// 		}
-	// 	  })
-	// 	  .catch((error) => {
-	// 		// Handle the error
-	// 		console.error(error);
-	// 	  });
-	//   };
-
-	//   useEffect(() => {
-	// 	getUserData();
-	//   }, []); // Empty dependency array to run the effect only once
-
-	// useEffect(() => {
-	// 	Axios.get("/getUser")
-	// 	.then((response) => {
-	// 	  const responseData = response.data;
-	// 	  if (responseData.success) {
-	// 		console.log(responseData.data.username);
-	// 		setUser(responseData.data.username);
-	// 	  } else {
-	// 		// Handle unsuccessful response
-	// 	  }
-	// 	})
-	// 	.catch((error) => {
-	// 	  // Handle the error
-	// 	  console.error(error);
-	// 	});
-
-	// }, []);
-
-
 	const logout = () => {
 		setUser();
 		Cookies.remove('UserToken');

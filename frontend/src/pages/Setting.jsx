@@ -1,5 +1,4 @@
 import React from 'react'
-import "../styles/Setting.css"
 import { useNavigate, Link } from 'react-router-dom';
 import { Card, Grid, Box, Typography, TextField, FormControlLabel, Checkbox } from '@mui/material'
 import DeleteAccount from '../components/DeleteAccount';

@@ -16,46 +16,6 @@ module.exports = (req, res) => {
 			});
 		}
 
-		// ! new
-		// numRows = rows.length;
-		// if (numRows == 0) {
-		// 	res.json({
-		// 		success: false,
-		// 		message: "user not found in the system",
-		// 	});
-		// } else {
-		// 	bcrypt.compare(password, rows[0].hashed_password, (err, valid) => {
-		// 		if (err) {
-		// 			return res.json({
-		// 				success: false,
-		// 				message: "Error comparing passwords",
-		// 			});
-		// 		}
-
-		// 		if (valid) {
-		// 			const token = jwt.sign(
-		// 				{
-		// 					userId: rows[0].id,
-		// 				},
-		// 				"ZJGX1QL7ri6BGJWj3t",
-		// 				{ expiresIn: "1h" }
-		// 			);
-		// 			res.cookie("userToken", token);
-
-		// 			res.json({
-		// 				success: true,
-		// 				message: "Login credential is correct",
-		// 				data: rows[0] && rows[0].username,
-		// 			});
-		// 		} else {
-		// 			res.json({
-		// 				success: true,
-		// 				message: "Login credential is incorrect",
-		// 			});
-		// 		}
-		// 	});
-		// }
-
 		numRows = rows.length;
 		if (numRows == 0) {
 			res.json({

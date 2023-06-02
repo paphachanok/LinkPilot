@@ -3,8 +3,6 @@ import { Box, Typography, Button } from '@mui/material';
 import { useEffect, useState, useContext } from "react";
 import { AxiosError } from "axios"
 import Axios from "axios";
-import GlobalContext from '../share/GlobalContext';
-import Cookies from 'js-cookie';
 
 const ImageCard = ({ url }) => {
 	const [previewData, setPreviewData] = useState(null);

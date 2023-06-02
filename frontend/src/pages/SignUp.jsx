@@ -13,9 +13,6 @@ function SignUp() {
 	const [status, setStatus] = useState('');
 	const [user, setUser] = useState('');
 
-	// const [status, setStatus] = useContext(GlobalContext);
-	// const [user, setUser] = useContext(GlobalContext);
-
 	const generatekey = () => {
 		return Math.random();
 	};

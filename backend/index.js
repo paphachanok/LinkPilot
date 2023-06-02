@@ -8,11 +8,6 @@ const cors = require('cors');
 const Axios = require("axios");
 const cheerio = require("cheerio");
 
-// //! อิหยังวะ
-// import { ErrorResponse } from './type/response.js';
-// import { verifyAccessToken } from './services/JWTService.js';
-
-//! start
 //* allows resources on a web page to be requested from a different domain than the one the page
 //* can be open in both 5174 5173
 app.use(
@@ -27,7 +22,7 @@ app.use(express.json());
 app.use(bodyParser.json({ type: "application/json" }));
 app.use(cookieParser());
 
-//! ต่อ database
+//! database
 const connection = mysql.createConnection({
 	host: "server2.bsthun.com",
 	port: "6105",
@@ -54,8 +49,6 @@ app.get("/link-preview", require("./route/link_preview"));
 app.post("/createLink", require("./route/createLink"));
 app.delete("/deleteLink", require("./route/deleteLink"));
 app.patch("/editLink", require("./route/editLink"));
-
-// app.get("/check", require("./route/ckeck_login"));
 app.get("/getAllLink", require("./route/get_all_link"));
 
 

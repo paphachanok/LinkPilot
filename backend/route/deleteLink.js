@@ -4,7 +4,6 @@ module.exports = (req, res) => {
 	try {
 		const authHeader = req.headers.authorization;
   		const token = authHeader && authHeader.split(" ")[1]; // Extract the token from the Authorization header
-		// const token = req.cookies.userToken;
 		console.log(token + " tokennn")
 		const { id } = req.query;
 		console.log(id);
